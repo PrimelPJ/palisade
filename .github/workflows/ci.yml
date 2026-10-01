@@ -43,7 +43,7 @@ jobs:
         working-directory: terraform/${{ matrix.stack }}
     steps:
       - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
+      - uses: hashicorp/setup-terraform@v4
       - run: terraform fmt -check -diff
       - run: terraform init -backend=false -input=false
       - run: terraform validate
