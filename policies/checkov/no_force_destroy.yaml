@@ -1,0 +1,11 @@
+metadata:
+  id: "CKV2_PAL_4"
+  name: "Audit and data buckets must not allow force_destroy"
+  category: "BACKUP_AND_RECOVERY"
+  guideline: "force_destroy lets a single terraform destroy wipe evidence and data with no recovery path."
+definition:
+  cond_type: attribute
+  resource_types: [aws_s3_bucket]
+  attribute: force_destroy
+  operator: not_equals
+  value: true

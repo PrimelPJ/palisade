@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+
+# Build output (Lambda / Function bundles)
+build/
+
+# Terraform: never commit state, secrets or provider caches
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+crash.log
+
+# Scan output that may contain real account data
+*.sarif
+inventory*.json
+snapshot*.json
+!examples/*.json
+
+.DS_Store
+.vscode/
+.idea/

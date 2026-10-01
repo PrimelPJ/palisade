@@ -1,0 +1,29 @@
+metadata:
+  id: "CKV2_PAL_1"
+  name: "Azure resources must carry owner and data_classification tags"
+  category: "GENERAL_SECURITY"
+  guideline: "Every resource needs an accountable owner and a classification so incidents can be routed and data handled correctly."
+definition:
+  and:
+    - cond_type: attribute
+      resource_types:
+        - azurerm_resource_group
+        - azurerm_storage_account
+        - azurerm_key_vault
+        - azurerm_virtual_network
+        - azurerm_network_security_group
+        - azurerm_linux_function_app
+        - azurerm_log_analytics_workspace
+      attribute: tags.owner
+      operator: exists
+    - cond_type: attribute
+      resource_types:
+        - azurerm_resource_group
+        - azurerm_storage_account
+        - azurerm_key_vault
+        - azurerm_virtual_network
+        - azurerm_network_security_group
+        - azurerm_linux_function_app
+        - azurerm_log_analytics_workspace
+      attribute: tags.data_classification
+      operator: exists

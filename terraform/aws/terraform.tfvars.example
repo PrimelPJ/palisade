@@ -1,0 +1,4 @@
+owner               = "your-name"
+alert_email         = "you@example.com"
+region              = "ca-central-1"
+remediation_dry_run = true

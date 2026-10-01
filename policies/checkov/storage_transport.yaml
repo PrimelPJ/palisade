@@ -1,0 +1,22 @@
+metadata:
+  id: "CKV2_PAL_3"
+  name: "Storage accounts must require TLS 1.2, HTTPS, and block anonymous access"
+  category: "ENCRYPTION"
+  guideline: "Mirrors Palisade runtime rules AZ-STG-001, AZ-STG-002 and AZ-STG-003."
+definition:
+  and:
+    - cond_type: attribute
+      resource_types: [azurerm_storage_account]
+      attribute: min_tls_version
+      operator: equals
+      value: TLS1_2
+    - cond_type: attribute
+      resource_types: [azurerm_storage_account]
+      attribute: allow_nested_items_to_be_public
+      operator: equals
+      value: false
+    - cond_type: attribute
+      resource_types: [azurerm_storage_account]
+      attribute: https_traffic_only_enabled
+      operator: not_equals
+      value: false

@@ -1,0 +1,21 @@
+metadata:
+  id: "CKV2_PAL_2"
+  name: "CloudTrail must be multi-region, validated and KMS-encrypted"
+  category: "LOGGING"
+  guideline: "Mirrors Palisade runtime rules AWS-CT-001, AWS-CT-002 and AWS-CT-003 so the same control is enforced before deploy."
+definition:
+  and:
+    - cond_type: attribute
+      resource_types: [aws_cloudtrail]
+      attribute: is_multi_region_trail
+      operator: equals
+      value: true
+    - cond_type: attribute
+      resource_types: [aws_cloudtrail]
+      attribute: enable_log_file_validation
+      operator: equals
+      value: true
+    - cond_type: attribute
+      resource_types: [aws_cloudtrail]
+      attribute: kms_key_id
+      operator: exists

@@ -1,0 +1,7 @@
+subscription_id           = "00000000-0000-0000-0000-000000000000"
+owner                     = "your-name"
+security_contact_email    = "you@example.com"
+location                  = "canadacentral"
+enable_defender           = false
+enable_event_subscription = false
+remediation_dry_run       = true
