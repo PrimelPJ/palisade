@@ -19,7 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-  "moto[s3,iam,ec2,cloudtrail,kms,sns]>=5.0",
+  "moto[s3,iam,ec2,cloudtrail,kms,sns]>=5.2.3",
   "pytest>=8.0",
   "ruff>=0.5",
 ]
