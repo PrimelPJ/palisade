@@ -1,0 +1,8 @@
+suppressions:
+  # Every suppression is a documented risk acceptance: what, why, and when it gets re-reviewed.
+  - rule: AWS-IAM-001
+    resource: "*"
+    reason: >-
+      moto cannot emulate root-user MFA, so this always fires in the simulated account.
+      In a real account this is never suppressed.
+    expires: 2027-12-31

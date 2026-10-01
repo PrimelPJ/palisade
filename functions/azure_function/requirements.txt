@@ -1,0 +1,8 @@
+azure-functions>=1.20
+azure-identity>=1.17
+azure-mgmt-resource>=23.1
+azure-mgmt-network>=26.0
+PyYAML>=6.0
+rich>=13.0
+click>=8.1
+boto3>=1.34
