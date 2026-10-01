@@ -63,7 +63,7 @@ jobs:
           external_checks_dirs: policies/checkov
           output_format: cli,sarif
           output_file_path: console,checkov.sarif
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
           sarif_file: checkov.sarif
@@ -86,7 +86,7 @@ jobs:
         run: |
           palisade scan azure --snapshot examples/azure-snapshot.json --format sarif -o palisade.sarif
           palisade scan azure --snapshot examples/azure-snapshot.json --format markdown >> "$GITHUB_STEP_SUMMARY"
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: palisade.sarif
           category: palisade-azure-example
