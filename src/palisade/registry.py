@@ -66,6 +66,11 @@ def rule(
     return decorator
 
 
+def rule_count() -> int:
+    _load_builtin_rules()
+    return len(_REGISTRY)
+
+
 def all_rules(provider: Provider | None = None) -> list[Rule]:
     _load_builtin_rules()
     rules = sorted(_REGISTRY.values(), key=lambda r: r.id)
