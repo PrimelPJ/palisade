@@ -12,10 +12,11 @@ class Severity(str, Enum):
     HIGH = "high"
     MEDIUM = "medium"
     LOW = "low"
+    INFO = "info"
 
     @property
     def rank(self) -> int:
-        return {"critical": 4, "high": 3, "medium": 2, "low": 1}[self.value]
+        return {"critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}[self.value]
 
     @classmethod
     def parse(cls, value: str) -> Severity:
