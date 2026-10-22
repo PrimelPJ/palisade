@@ -26,6 +26,7 @@ class Severity(str, Enum):
 class Provider(str, Enum):
     AWS = "aws"
     AZURE = "azure"
+    GCP = "gcp"
 
 
 @dataclass(frozen=True)
