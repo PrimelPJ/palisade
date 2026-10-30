@@ -11,7 +11,7 @@ from palisade.registry import rule
 AWS = Provider.AWS
 OPEN_CIDRS_V4 = {"0.0.0.0/0"}
 OPEN_CIDRS_V6 = {"::/0"}
-ADMIN_PORTS = {22: "SSH", 3389: "RDP", 5985: "WinRM", 5986: "WinRM-HTTPS"}
+ADMIN_PORTS = {21: "FTP", 22: "SSH", 23: "Telnet", 3389: "RDP", 5985: "WinRM", 5986: "WinRM-HTTPS"}
 PAB_FLAGS = ("BlockPublicAcls", "IgnorePublicAcls", "BlockPublicPolicy", "RestrictPublicBuckets")
 PUBLIC_GRANTEES = (
     "http://acs.amazonaws.com/groups/global/AllUsers",
