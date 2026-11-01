@@ -50,4 +50,4 @@ def test_threshold_and_ordering(azure_snapshot_path):
     assert result.fails_threshold(Severity.CRITICAL)
     ranks = [f.severity.rank for f in result.active]
     assert ranks == sorted(ranks, reverse=True)
-    assert result.counts() == {"critical": 1, "high": 5, "medium": 5, "low": 2}
+    assert result.counts() == {"critical": 1, "high": 5, "medium": 5, "low": 2, "info": 0}

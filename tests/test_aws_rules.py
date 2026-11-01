@@ -3,6 +3,7 @@ import json
 import pytest
 
 from palisade.collectors.aws import AwsCollector
+from palisade.rules.aws import ADMIN_PORTS
 from palisade.scanner import Suppression, scan
 from palisade.simulate import APP_BUCKET, SCENARIOS
 
@@ -79,14 +80,14 @@ def test_missing_tls_policy(hardened):
     assert "AWS-S3-002" in rules
 
 
-def test_rdp_via_all_traffic_rule(hardened):
+def test_admin_ports_via_all_traffic_rule(hardened):
     session, ids = hardened
     session.client("ec2").authorize_security_group_ingress(
         GroupId=ids["sg_id"], IpPermissions=[{"IpProtocol": "-1", "Ipv6Ranges": [{"CidrIpv6": "::/0"}]}]
     )
     _, result = active_rules(session)
     details = {f.detail for f in result.active if f.rule_id == "AWS-EC2-001"}
-    assert details == {"SSH (port 22) open to ::/0", "RDP (port 3389) open to ::/0"}
+    assert details == {f"{name} (port {port}) open to ::/0" for port, name in ADMIN_PORTS.items()}
 
 
 def test_https_from_internet_is_allowed(hardened):
