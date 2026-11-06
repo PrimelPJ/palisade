@@ -84,4 +84,4 @@ def get_rule(rule_id: str) -> Rule:
 
 def _load_builtin_rules() -> None:
     # Importing the modules runs their @rule decorators exactly once.
-    from palisade.rules import aws, azure  # noqa: F401
+    from palisade.rules import aws, azure, gcp  # noqa: F401
