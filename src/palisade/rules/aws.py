@@ -117,6 +117,20 @@ def s3_public(bucket: dict[str, Any], resources: dict[str, Any]) -> Iterator[str
                 yield f"ACL grants {grant.get('Permission')} to {uri.rsplit('/', 1)[-1]}"
 
 
+@rule(
+    id="AWS-S3-005",
+    title="S3 bucket server access logging is disabled",
+    severity=Severity.LOW,
+    provider=AWS,
+    resource_type="s3_bucket",
+    cis="2.1.2",
+    remediation="Enable server access logging and direct logs to a separate audit bucket.",
+)
+def s3_access_logging(bucket: dict[str, Any], _: dict[str, Any]) -> Iterator[str]:
+    if not bucket.get("access_logging_enabled"):
+        yield "Server access logging is disabled; bucket access cannot be audited after a breach"
+
+
 # ---- IAM --------------------------------------------------------------------
 
 
