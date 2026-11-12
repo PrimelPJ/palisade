@@ -42,6 +42,7 @@ class Finding:
     detail: str
     cis: str
     remediation: str
+    resource_region: str | None = None
     auto_remediable: bool = False
     suppressed: bool = False
     suppression_reason: str | None = None
