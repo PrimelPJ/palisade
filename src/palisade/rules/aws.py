@@ -14,6 +14,7 @@ OPEN_CIDRS_V6 = {"::/0"}
 ADMIN_PORTS = {
     21: "FTP", 22: "SSH", 23: "Telnet", 3389: "RDP", 5985: "WinRM", 5986: "WinRM-HTTPS",
     1433: "MSSQL", 1521: "OracleDB", 3306: "MySQL", 5432: "PostgreSQL", 27017: "MongoDB",
+    6379: "Redis", 9200: "Elasticsearch", 11211: "Memcached",
 }
 PAB_FLAGS = ("BlockPublicAcls", "IgnorePublicAcls", "BlockPublicPolicy", "RestrictPublicBuckets")
 PUBLIC_GRANTEES = (
