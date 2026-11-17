@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import fnmatch
+import time
+import uuid
 from dataclasses import dataclass, field, replace
 from datetime import date
 from pathlib import Path
@@ -51,6 +53,8 @@ class ScanResult:
     findings: list[Finding] = field(default_factory=list)
     rules_evaluated: int = 0
     resources_evaluated: int = 0
+    scan_id: str = field(default_factory=lambda: uuid.uuid4().hex[:12])
+    scan_ts: float = field(default_factory=time.time)
 
     @property
     def active(self) -> list[Finding]:
@@ -71,6 +75,8 @@ class ScanResult:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "scan_id": self.scan_id,
+            "scan_ts": self.scan_ts,
             "provider": self.inventory.provider.value,
             "account": self.inventory.account,
             "rules_evaluated": self.rules_evaluated,
