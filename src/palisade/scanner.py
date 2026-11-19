@@ -55,6 +55,7 @@ class ScanResult:
     resources_evaluated: int = 0
     scan_id: str = field(default_factory=lambda: uuid.uuid4().hex[:12])
     scan_ts: float = field(default_factory=time.time)
+    scan_duration_s: float | None = None
 
     @property
     def active(self) -> list[Finding]:
@@ -77,6 +78,7 @@ class ScanResult:
         return {
             "scan_id": self.scan_id,
             "scan_ts": self.scan_ts,
+            "scan_duration_s": self.scan_duration_s,
             "provider": self.inventory.provider.value,
             "account": self.inventory.account,
             "rules_evaluated": self.rules_evaluated,
@@ -101,6 +103,7 @@ def scan(
     ]
     result = ScanResult(inventory=inventory, rules_evaluated=len(rules))
     seen_resources: set[str] = set()
+    _start = time.time()
     for r in rules:
         for resource in inventory.of(r.resource_type):
             seen_resources.add(f"{r.resource_type}:{resource.get('id')}")
@@ -111,5 +114,6 @@ def scan(
                     finding = replace(finding, suppressed=True, suppression_reason=match.reason)
                 result.findings.append(finding)
     result.resources_evaluated = len(seen_resources)
+    result.scan_duration_s = round(time.time() - _start, 3)
     result.findings.sort(key=lambda f: (-f.severity.rank, f.rule_id, f.resource_id))
     return result
