@@ -45,6 +45,7 @@ class Finding:
     auto_remediable: bool = False
     suppressed: bool = False
     suppression_reason: str | None = None
+    tags: dict[str, str] = field(default_factory=dict, compare=False, hash=False)
 
     @property
     def key(self) -> str:
