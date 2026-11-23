@@ -62,6 +62,10 @@ class ScanResult:
         return [f for f in self.findings if not f.suppressed]
 
     @property
+    def passed(self) -> bool:
+        return len(self.active) == 0
+
+    @property
     def suppressed(self) -> list[Finding]:
         return [f for f in self.findings if f.suppressed]
 
